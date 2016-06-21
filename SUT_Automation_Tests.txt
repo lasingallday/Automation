@@ -1,0 +1,197 @@
+*** Settings ***
+Library           OperatingSystem
+Library           C:/Python27/RunLoadScripts/matchingNameFour.py
+Library           Process
+Library           String
+Library           C:/Python27/RunLoadScripts/executingSQLPlus.py
+
+*** Variables ***
+${priorMonthYear}    November 2015
+${currentYearFolder}    2015 Folder
+${updateResultsFolder}    T:/WIL/Departments/TaxContentQA/Test Artifacts & Results/SUT Content Update
+${CobolInfo}      L:/Cobol 400
+${dir}            dir
+${PLSQLInfo}      L:/taxtestutl
+${taxtestPartialPath}    PlSql/Update/
+${updateTypePartialPath}    Regular
+${templateFolder}    T:/WIL/Departments/TaxContentQA/Test Artifacts & Results/Special_Projects/SUT Automation/Template
+${Status}         Production
+${updateGenerateFolder}    T:/WIL/Apps/scms_data/GenerateOutput
+${updateGenerateVersionFolder}    1.86    # GUI will ask user for this input
+${updateGenerateTypeFolder}    1.86.9.P.GOLD
+${controlGenerateFolder}    T:/WIL/Compliance/X/Tdg/updates/small files
+${currentYear}    2015
+${CInfo}          L:/C_403
+${currentMonthYear}    December 2015
+${masterGenerateVersionFolder}    1.85    # GUI will ask user for this input
+${masterGenerateTypeFolder}    1.85.6.P.GOLD
+${currentPLSQLFolder}    L:/plsql403
+
+*** Test Cases ***
+Move Files to ContentQA
+    Comment    The assumption is being made Prod control files have already been loaded
+    Copy files    ${updateGenerateFolder}/${masterGenerateVersionFolder}/${masterGenerateTypeFolder}/${priorMonthYear}/COBOL/MASTER/*    ${templateFolder}/Files/Prod/Main
+    Copy file    ${updateGenerateFolder}/${masterGenerateVersionFolder}/${masterGenerateTypeFolder}/${priorMonthYear}/Standard/CONTROLS/cntyseq    ${templateFolder}/Files/Prod/Main
+    Run    C:/Python27/RunLoadScripts/matchingNameFour.py
+    printResultsToFile    \    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/
+    @{FILES}=    getMatchingName    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/file.txt    \    LoadFiles
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='caltrtpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/caltrtpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='canprovs'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/canprovs    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='feedescs'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/feedescs    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='feeexten'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/feeexten    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='nexdesc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/nexdesc    ${templateFolder}/Files/Update/Control/C/
+    \    Comment    Run Keyword If    '${FILE}'=='PILoad.dat'    Copy files    ${templateFolder}/Files/Update/Control/Cobol/*    ${CobolInfo}/
+    \    Run Keyword If    '${FILE}'=='prdistpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/prdistpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='proddesc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/proddesc    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='prodext'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/prodext    ${templateFolder}/Files/Update/Control/C/
+    \    Comment    Run Keyword If    '${FILE}'=='stepcnty.dat'    Copy files    ${templateFolder}/Files/Update/Control/Cobol/*    ${CobolInfo}/
+    \    Run Keyword If    '${FILE}'=='stepreas'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepreas    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='stepreas'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepreas    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='stepstcd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstcd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='stepstcd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstcd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='stepstcn'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstcn    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='stepstcn'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstcn    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='stepstrc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstrc    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='stepstrc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstrc    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='stepstre'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstre    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='stepstre'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/stepstre    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxbkt'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxbkt    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxbkt'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxbkt    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxbyitm'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxbyitm    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxbyitm'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxbyitm    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxcuspd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxcuspd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxcuspd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxcuspd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxdivpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxdivpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxdlvr'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxdlvr    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxdscpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxdscpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxexc34'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxexc34    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxexczp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxexczp    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxexczp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxexczp    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxexmax'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxexmax    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxfees'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxfees    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxfrtpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrftpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxfrtpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrftpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxholdy'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxholdy    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxholdy'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxholdy    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxholdy2'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxholdy2    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxholdy2'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxholdy2    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxjurcd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxjurcd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxjurpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxjurpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxjurpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxjurpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxjurpr'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxjurpr    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxmappd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxmappd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Comment    Run Keyword If    '${FILE}'=='taxmxtax.dat'    Copy files    ${templateFolder}/Files/Update/Control/Cobol/*    ${CobolInfo}/
+    \    Run Keyword If    '${FILE}'=='taxprizp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxprizp    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxprizp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxprizp    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxrfnds'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrfnds    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxrnd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrnd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxrnd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrnd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxrntpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrntpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxrntpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxrntpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxsrcpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxsrcpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxsrcpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxsrcpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxstapd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxstapd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='taxstapd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxstapd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxstuez'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxstuez    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='taxvalzp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/taxvalzp    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='texasexc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/texasexc    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='texasexc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/texasexc    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='txbackex'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txbackex    ${templateFolder}/Files/Update/Control/C/
+    \    Comment    Run Keyword If    '${FILE}'=='txcanada.dat'    Copy files    ${templateFolder}/Files/Update/Control/Cobol/*    ${CobolInfo}/
+    \    Run Keyword If    '${FILE}'=='txlocadm'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txlocadm    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='txnexadm'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txnexadm    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='txnobkst'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txnobkst    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='txrndexc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txrndexc    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='txrndexc'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txrndexc    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='txspdpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txspdpd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='txspdpd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/txspdpd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='zipstapd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zipstapd    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='zipstapd'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zipstapd    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='zipvalzp'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zipvalzp    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='zpexs34'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zpexs34    ${templateFolder}/Files/Update/Control/C/
+    \    Run Keyword If    '${FILE}'=='zpexseq'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zpexseq    ${templateFolder}/Files/Update/Control/Cobol/
+    \    Run Keyword If    '${FILE}'=='zpexseq'    Copy files    ${controlGenerateFolder}/${currentYear}/${priorMonthYear}/zpexseq    ${templateFolder}/Files/Update/Control/C/
+    \    Log    ${FILE}    console=yes
+
+Move Files to Systems
+    Copy files    ${templateFolder}/Files/Prod/Main/excprule    ${templateFolder}/Files/Prod/Main/newmast    ${templateFolder}/Files/Prod/Main/prodseq    ${templateFolder}/Files/Prod/Main/zipseq    ${PLSQLInfo}/
+    Copy files    ${templateFolder}/Files/Prod/Main/cntyseq    ${templateFolder}/Files/Prod/Main/excprule    ${templateFolder}/Files/Prod/Main/feedata    ${templateFolder}/Files/Prod/Main/newmast    ${templateFolder}/Files/Prod/Main/prodseq    ${templateFolder}/Files/Prod/Main/zipseq
+    ...    ${CInfo}/indata/
+    Copy files    ${templateFolder}/Files/Prod/Main/cntyseq    ${templateFolder}/Files/Prod/Main/newmast    ${templateFolder}/Files/Prod/Main/prodseq    ${templateFolder}/Files/Prod/Main/zipseq    ${templateFolder}/Files/Prod/Main/excprule    ${CobolInfo}/
+    Run Keyword And Ignore Error    Run Keyword If    '${Status}'=='Update'    Copy files    ${templateFolder}/Files/Update/Control/PLSQL/*    ${currentPLSQLFolder}/sales_use/LOAD_SCRIPTS/
+    Run Keyword If    '${Status}'=='Update'    Copy files    ${templateFolder}/Files/Update/Control/C/*    ${CInfo}/indata/
+    Run Keyword If    '${Status}'=='Update'    Copy files    ${templateFolder}/Files/Update/Control/Cobol/*    ${CobolInfo}/
+    Log    ${Status}    console=yes
+
+Master Control Load PLSQL
+    Run Keyword If    '${Status}'=='Production'    Run    C:/Python27/RunLoadScripts/Load_Control_Files_PLSQL.bat
+    Run    C:/Python27/RunLoadScripts/Load_Master_PLSQL_One.bat
+    Copy files    ${PLSQLInfo}/newmast.log    ${PLSQLInfo}/prodseq.log    ${PLSQLInfo}/excprule.log    ${PLSQLInfo}/zipseq.log    ${templateFolder}/PLSQL/Update/${updateTypePartialPath}/
+
+Master Control Load C
+    Run    C:/Users/Jeffrey.Thomas/Master.py
+    Run    C:/Users/Jeffrey.Thomas/matchingNameFour.py
+    printResultsToFile    \    ${templateFolder}/Files/Update/Control/C/
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Control/C/file.txt    \    LoadFiles
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='stepstrc'    Run    C:/Python27/RunLoadScripts/load_Step_Files_C.py
+    \    Run Keyword If    '${FILE}'=='stepstre'    Run    C:/Python27/RunLoadScripts/load_Step_Files_C.py
+    \    Log    ${FILE}    console=yes
+
+Master Control Load Cobol
+    Move file    ${CobolInfo}/AVPTRANS-LOAD    ${CobolInfo}/AVPTRANS
+    Run    C:/Python27/RunLoadScripts/Load_Master_Cobol.bat
+    Move file    ${CobolInfo}/AVPTRANS    ${CobolInfo}/AVPTRANS-LOAD
+
+Update Control Load PLSQL
+    [Documentation]    This does NOT load PLSQL control files because advanced automation is required to do so.
+    Run keyword and ignore error    Copy file    ${updateGenerateFolder}/${updateGenerateVersionFolder}/${updateGenerateTypeFolder}/${currentMonthYear}/COBOL/UPDATE/taxupdt*    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud001
+    Run keyword and ignore error    Copy file    ${updateGenerateFolder}/${updateGenerateVersionFolder}/${updateGenerateTypeFolder}/${currentMonthYear}/COBOL/UPDATE/zipupdt*    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud002
+    Run keyword and ignore error    Copy file    ${updateGenerateFolder}/${updateGenerateVersionFolder}/${updateGenerateTypeFolder}/${currentMonthYear}/COBOL/UPDATE/produpdt*    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud003
+    Copy Files    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/*    ${PLSQLInfo}/
+    Run    C:/Python27/RunLoadScripts/matchingNameFour.py
+    printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    LoadFiles
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='excprule'    Run    C:/Python27/RunLoadScripts/load_${FILE}_PLSQL_One.bat
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    updateFiles_PLSQL
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='ud001'    Run    C:/Python27/RunLoadScripts/Load_Update_PLSQL_ud001_One.bat
+    \    Run Keyword If    '${FILE}'=='ud002'    Run    C:/Python27/RunLoadScripts/Load_Update_PLSQL_ud002_One.bat
+    \    Run Keyword If    '${FILE}'=='ud003'    Run    C:/Python27/RunLoadScripts/Load_Update_PLSQL_ud003_One.bat
+
+Update Control Load C
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud001    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/taxupdt_xxx
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud002    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/zipupdt_xxx
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/ud003    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/produpdt_xxx
+    Copy files    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/*    ${CInfo}/indata/
+    Run    C:/Python27/RunLoadScripts/matchingNameFour.py
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    LoadFiles
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='cntyseq'    Run    C:/Python27/RunLoadScripts/load_${FILE}_C.py
+    \    Run Keyword If    '${FILE}'=='feedata'    Run    C:/Python27/RunLoadScripts/load_${FILE}_C.py
+    \    Run Keyword If    '${FILE}'=='excprule'    Run    C:/Python27/RunLoadScripts/load_${FILE}_C.py
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    updateFiles_PLSQL
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Log    ${FILE}    console=yes
+    \    Run Keyword If    '${FILE}'=='ud001'    Run    C:/Python27/RunLoadScripts/load_taxupdt_xxx_C.py
+    \    Run Keyword If    '${FILE}'=='ud002'    Run    C:/Python27/RunLoadScripts/load_zipupdt_xxx_C.py
+    \    Run Keyword If    '${FILE}'=='ud003'    Run    C:/Python27/RunLoadScripts/load_produpdt_xxx_C.py
+
+Update Control Load Cobol
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/taxupdt_xxx    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/avptrans
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/zipupdt_xxx    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/zipupdt
+    Run keyword and ignore error    Move file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/produpdt_xxx    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/produpdt
+    Copy files    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/*    ${CobolInfo}/
+    Run    C:/Python27/RunLoadScripts/matchingNameFour.py
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    LoadFiles
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='cntyseq'    Run    C:/Python27/RunLoadScripts/load_${FILE}_Cobol.py
+    \    Run Keyword If    '${FILE}'=='excprule'    Run    C:/Python27/RunLoadScripts/load_${FILE}_Cobol.py
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/file.txt    \    updateFiles_PLSQL
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Log    ${FILE}    console=yes
+    \    Run Keyword If    '${FILE}'=='ud001'    Run    C:/Python27/RunLoadScripts/load_taxupdt_Cobol.py
+    \    Run Keyword If    '${FILE}'=='ud002'    Run    C:/Python27/RunLoadScripts/load_zipupdt_Cobol.py
+    \    Run Keyword If    '${FILE}'=='ud003'    Run    C:/Python27/RunLoadScripts/load_produpdt_Cobol.py
