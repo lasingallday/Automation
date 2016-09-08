@@ -1,9 +1,9 @@
 <root>
 	<Supplemental>00</Supplemental>
-	<Month>01</Month>
+	<Month>06</Month>
 	<Year>2016</Year>
 	<Installer>\\corp.sovos.local\sovos\WIL\Departments\Production\ReleaseCode\C_Suite_Install_2.0</Installer>
-	<Version>649</Version>
+	<Version>655</Version>
 	<Systems>
 		<System Name="C">
 			<Types>
@@ -11,41 +11,14 @@
 					<Configs>
 						<Config Name="MainFiles">
 							<Files>
-								<File>cntyseq</File>
-								<File>excprule</File>
-								<File>feedata</File>
-								<File>produpdt_364</File>
-								<File>taxupdt_649</File>
-								<File>zipupdt_347</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
 							<Files>
-								<File>stepstre</File>
-								<File>proddesc</File>
-								<File>taxbkt</File>
-								<File>taxholdy</File>
-								<File>taxholdy2</File>
-								<File>taxrnd</File>
-								<File>txnexadm</File>
 							</Files>
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>DtChg649.txt</File>
-								<File>Feedata.txt</File>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepstre.txt</File>
-								<File>proddesc.txt</File>
-								<File>taxbkt.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>taxrnd.txt</File>
-								<File>txnexadm.txt</File>
-								<File>VERAZIP.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -115,20 +88,6 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>DtChg649.txt</File>
-								<File>Feedata.txt</File>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepstre.txt</File>
-								<File>proddesc.txt</File>
-								<File>taxbkt.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>taxrnd.txt</File>
-								<File>txnexadm.txt</File>
-								<File>VERAZIP.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -141,32 +100,14 @@
 					<Configs>
 						<Config Name="MainFiles">
 							<Files>
-								<File>excprule</File>
-								<File>produpdt_364</File>
-								<File>taxupdt_649</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
 							<Files>
-								<File>proddesc</File>
-								<File>stepcnty</File>
-								<File>stepstre</File>
-								<File>taxholdy</File>
-								<File>txnexadm</File>
 							</Files>
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepcnty.txt</File>
-								<File>stepstre.txt</File>
-								<File>proddesc.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>txnexadm.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -177,7 +118,7 @@
 							<Files>
 								<File>newmast</File>
 								<File>prodseq</File>
-								<File>excprule</File>								
+								<File>excprule</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
@@ -216,16 +157,6 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepcnty.txt</File>
-								<File>stepstre.txt</File>
-								<File>proddesc.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>txnexadm.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -238,21 +169,10 @@
 					<Configs>
 						<Config Name="MainFiles">
 							<Files>
-								<File>excprule</File>
-								<File>cntyseq</File>
-								<File>produpdt_364</File>
-								<File>taxupdt_649</File>
-								<File>zipupdt_347</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
 							<Files>
-								<File>stepstre</File>
-								<File>taxbkt</File>
-								<File>taxholdy</File>
-								<File>taxholdy2</File>
-								<File>taxmappd</File>
-								<File>taxrnd</File>
 							</Files>
 						</Config>
 						<Config Name="CICS-CopyBooks">
@@ -261,17 +181,6 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>VERAZIP.txt</File>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>proddescref.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepstre.txt</File>
-								<File>taxbkt.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>taxrnd.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -337,17 +246,6 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>VERAZIP.txt</File>
-								<File>Excprule.txt</File>
-								<File>DtChg649.txt</File>
-								<File>proddescref.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>stepstre.txt</File>
-								<File>taxbkt.txt</File>
-								<File>TAXHOLDY.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>taxrnd.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -360,30 +258,14 @@
 					<Configs>
 						<Config Name="MainFiles">
 							<Files>
-								<File>cntyseq</File>
-								<File>produpdt_364</File>
-								<File>taxupdt_649</File>
-								<File>zipupdt_347</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
 							<Files>
-							<File>gacntypd</File>
-							<File>taxholpd</File>
-							<File>taxholpd2</File>
-							<File>taxmappd</File>
 							</Files>
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>VERAZIP.txt</File>
-								<File>gacntypd.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>TAXHOLPD.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>TAXMAPPD.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -422,14 +304,6 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>VERAZIP.txt</File>
-								<File>gacntypd.txt</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
-								<File>SALESTAX.txt</File>
-								<File>TAXHOLPD.txt</File>
-								<File>PRODUCT.txt</File>
-								<File>TAXMAPPD.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -442,8 +316,6 @@
 					<Configs>
 						<Config Name="Root">
 							<Files>
-								<File>zipupdt_347</File>
-								<File>VERAZIP.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -470,23 +342,16 @@
 					<Configs>
 						<Config Name="MainFiles">
 							<Files>
-								<File>wtcountry</File>
-								<File>wtctiru_126</File>
-								<File>wtctcmu_135</File>
+								<File>wtctiru_130</File>
 							</Files>
 						</Config>
 						<Config Name="ControlFiles">
 							<Files>
-								<File>wtcurc</File>
-								<File>wtemplrn</File>
 							</Files>
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>wtctiru_126.txt</File>
-								<File>wtctcmu_135.txt</File>
-								<File>wtcurc.txt</File>
-								<File>wtemplrn.txt</File>
+								<File>wtctiru_130.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -524,10 +389,7 @@
 						</Config>
 						<Config Name="Documents">
 							<Files>
-								<File>Wtctcm.txt</File>
 								<File>wtctsir.txt</File>
-								<File>wtcurc.txt</File>
-								<File>wtemplrn.txt</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -541,8 +403,8 @@
 						<Config Name="Root">
 							<Files>
 								<File>TMDFL</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
+								<File>DtChg655.txt</File>
+								<File>SmChg655.txt</File>
 								<File>TMD.txt</File>
 							</Files>
 						</Config>
@@ -556,9 +418,9 @@
 					<Configs>
 						<Config Name="Root">
 							<Files>
-								<File>SmChg648.txt</File>
+								<File>SmChg655.txt</File>
 								<File>TMD2.txt</File>
-								<File>TMD2_1.148_TAXWARE</File>
+								<File>TMD2_1.155_TAXWARE</File>
 							</Files>
 						</Config>
 					</Configs>
@@ -572,8 +434,6 @@
 						<Config Name="Root">
 							<Files>
 								<File>install.exe</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
 								<File>TAXMGR.txt</File>
 							</Files>
 						</Config>
@@ -588,8 +448,6 @@
 						<Config Name="Root">
 							<Files>
 								<File>VERATAX.TXT</File>
-								<File>DtChg649.txt</File>
-								<File>SmChg649.txt</File>
 								<File>VTAX.txt</File>
 							</Files>
 						</Config>
@@ -603,7 +461,7 @@
 					<Configs>
 						<Config Name="Root">
 							<Files>
-								<File>verataxPLUS.1215.txt</File>
+								<File>verataxPLUS.0616.txt</File>
 							</Files>
 						</Config>
 					</Configs>

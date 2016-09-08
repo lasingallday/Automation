@@ -4,13 +4,14 @@ import win32com.client
 import time
 import SendKeys
 import os
+from varfile import *
 
-path = "L:/C_407/toolkit"
+path = "L:/"+CVersion+"/toolkit"
 os.chdir( path )
 shell = win32com.client.Dispatch("WScript.Shell") 
 
 #Open the Toolkit.exe
-os.startfile('L:/C_407/toolkit/stepwin.exe')
+os.startfile(path+'/toolkit.exe')
 
 #Load the Transaction File
 time.sleep( 2 )

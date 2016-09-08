@@ -4,13 +4,14 @@ import win32com.client
 import time
 import SendKeys
 import os
+from varfile import *
 
-path = "L:/C_403/toolkit"
+path = "L:/"+CVersion+"/toolkit"
 os.chdir( path )
 shell = win32com.client.Dispatch("WScript.Shell") 
 
 #Open the Toolkit.exe
-os.startfile('L:/C_403/toolkit/toolkit.exe')
+os.startfile(path+'/toolkit.exe')
 
 #Load the Tax Update File
 time.sleep( 5 )
