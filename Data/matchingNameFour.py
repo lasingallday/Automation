@@ -13,8 +13,6 @@ def getMatchingName(filepath, matchString, situation):
 		situationString = '\w+' + 'updt_'
 	if situation == 'updateFiles_Cobol':
 		situationString = '\w+' + 'upd'
-	if situation == 'updateFiles_WorldTax':
-		situationString = 'wtct'
 	if situation == 'runningTaxtests':
 		situationString = '_' + '\w+' + '-'
 	if situation == 'LoadFiles':

@@ -1,11 +1,10 @@
 *** Settings ***
 Library           Selenium2Library
-Library           AutoItLibrary
 Library           OperatingSystem
-Library           C:/Users/jeffrey.thomas/Results/Data/matchingNameFour.py
+Library           C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
 Library           Process
 Library           String
-Variables         C:/Miniconda2/Lib/site-packages/varfile.py
+Variables         C:/Users/Jeffrey.Thomas/Results/Data/varfile.py
 
 *** Variables ***
 ${updateResultsFolder}    T:/WIL/Departments/TaxContentQA/Test Artifacts & Results/SUT Content Update
@@ -27,14 +26,14 @@ Unzip
 
 Extract
     [Tags]    getJenkinsFiles
-    OperatingSystem.Run    python C:/Users/jeffrey.thomas/Results/Data/Extract_All_Files-local.py
+    OperatingSystem.Run    python C:/Users/Jeffrey.Thomas/Results/Data/Extract_All_Files-local.py
 
 Copy Non Update Files to ContentQA
     Run Keyword If    '${testType}'=='Functional'    files copied to ContentQA - Functional
     Run Keyword If    '${testType}'=='Regression'    files copied to ContentQA - Regression
 
 Copy Update Control Files to ContentQA
-    OperatingSystem.Run    C:/Users/jeffrey.thomas/Results/Data/matchingNameFour.py
+    OperatingSystem.Run    C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
     printResultsToFile    \    ${controlGenerateFolder}/${currentYear}/${currentMonthYear_controlGenerate}/
     @{FILES}=    getMatchingName    ${controlGenerateFolder}/${currentYear}/${currentMonthYear_controlGenerate}/file.txt    \    LoadFiles
     : FOR    ${FILE}    IN    @{FILES}
@@ -171,7 +170,7 @@ Copy Update Control Files to ContentQA
 Copy Non Update Files to Systems
     Run Keyword If    '${Status}'=='Production'    files copied to the systems - Production
     Run Keyword If    '${Status}'=='Update'    files copied to the systems - Update
-    Run Keyword If    '${Status}'=='Production'    non update files copied to Template
+    Run Keyword If    '${Status}'=='Production'    production files copied to Template
 
 Copy Regression A Files to Systems
     Run Keyword    files copied to the systems - Regression A
@@ -182,7 +181,7 @@ Copy Regression B Files to Systems
 Copy Update Files to Systems
     Run Keyword If    '${testType}'=='Functional'    update files copied to ContentQA - Functional
     Then update files copied to Template
-    Then update files copied to the systems
+    Then incremental files copied to the systems
 
 Master Control Load PLSQL
     OperatingSystem.Run    C:/Users/Jeffrey.Thomas/Results/Data/Load_Control_Files_PLSQL.bat
@@ -207,23 +206,24 @@ Master Control Load Cobol
     Move file    ${CobolInfo}/AVPTRANS    ${CobolInfo}/AVPTRANS-LOAD
     Comment    Move file    ${CobolInfo}/RPTEXC    ${templateFolder}/Cobol/Update/${updateTypePartialPath}/
 
+Add
+    printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/C/
+    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/C/file.txt    \    LoadFiles
+
 New Master Load
-    Run    C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
-    printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/
-    @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/file.txt    \    LoadFiles
-    : FOR    ${FILE}    IN    @{FILES}
-    \    Run Keyword If    '${FILE}'=='excprule'    Run    C:/Users/Jeffrey.Thomas/Results/Data/load_${FILE}_PLSQL_One.bat
-    Move file    ${CobolInfo}/AVPTRANS-LOAD    ${CobolInfo}/AVPTRANS
-    Run    C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
-    printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/Cobol/
+    Run Keyword If    '${Status}'=='Update'    OperatingSystem.Run    cd C:/Users/Jeffrey.Thomas/Results/Data && C:/Users/Jeffrey.Thomas/Results/Data/Load_Control_Files_PLSQL_Zero.bat
+    OperatingSystem.Run    python C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
+    Comment    printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/Cobol/
     @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/Cobol/file.txt    \    LoadFiles
     : FOR    ${FILE}    IN    @{FILES}
-    \    Run Keyword If    '${FILE}'=='cntyseq'    OperatingSystem.Run    C:/Users/Jeffrey.Thomas/Results/Data/load_cntyseq_Cobol.bat
-    \    Run Keyword If    '${FILE}'=='excprule'    OperatingSystem.Run    C:/Users/Jeffrey.Thomas/Results/Data/load_excprule_Cobol.bat
+    \    Run Keyword If    '${FILE}'=='excprule'    OperatingSystem.Run    C:/Users/Jeffrey.Thomas/Results/Data/load_${FILE}_PLSQL_One.bat
+    Move file    ${CobolInfo}/AVPTRANS-LOAD    ${CobolInfo}/AVPTRANS
+    : FOR    ${FILE}    IN    @{FILES}
+    \    Run Keyword If    '${FILE}'=='cntyseq'    OperatingSystem.Run    cd C:/Users/Jeffrey.Thomas/Results/Data && C:/Users/Jeffrey.Thomas/Results/Data/load_cntyseq_Cobol.bat
+    \    Run Keyword If    '${FILE}'=='excprule'    OperatingSystem.Run    cd C:/Users/Jeffrey.Thomas/Results/Data && C:/Users/Jeffrey.Thomas/Results/Data/load_excprule_Cobol.bat
     Move file    ${CobolInfo}/AVPTRANS    ${CobolInfo}/AVPTRANS-LOAD
 
 Update Control Load
-    Run Keyword If    '${Status}'=='Update'    Run    C:/Users/Jeffrey.Thomas/Results/Data/Load_Control_Files_PLSQL.bat
     Run    C:/Users/Jeffrey.Thomas/Results/Data/matchingNameFour.py
     printResultsToFile    \    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/
     @{FILES}=    getMatchingName    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/file.txt    \    updateFiles_PLSQL
@@ -251,18 +251,18 @@ Update Control Load
     Comment    Move files    ${CobolInfo}/RPT007    ${CobolInfo}/RPTZ040    ${CobolInfo}/RPT021    ${templateFolder}/Cobol/Update/${updateTypePartialPath}/
 
 Cleanup Local
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-cobol-regular-full.zip
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-c-regular-full.zip
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-plsql-regular-full.zip
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-cobol-regular-incremental.zip
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-c-regular-incremental.zip
-    Remove file    C:/Users/jeffrey.thomas/Downloads/${currentYear}-${currentNoMonth}-sut-plsql-regular-incremental.zip
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-cobol-regular-full/    true
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-c-regular-full/    true
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-plsql-regular-full/    true
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-cobol-regular-incremental/    true
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-c-regular-incremental/    true
-    Remove Directory    C:/Users/jeffrey.thomas/${currentYear}-${currentNoMonth}-sut-plsql-regular-incremental/    true
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-cobol-regular-full.zip
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-c-regular-full.zip
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-plsql-regular-full.zip
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-cobol-regular-incremental.zip
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-c-regular-incremental.zip
+    Remove file    C:/Users/Jeffrey.Thomas/Downloads/${currentYear}-${currentNoMonth}-sut-plsql-regular-incremental.zip
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-cobol-regular-full/    true
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-c-regular-full/    true
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-plsql-regular-full/    true
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-cobol-regular-incremental/    true
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-c-regular-incremental/    true
+    Remove Directory    C:/Users/Jeffrey.Thomas/${currentYear}-${currentNoMonth}-sut-plsql-regular-incremental/    true
 
 Cleanup Remote
     Copy Directory    ${templateFolder}    ${SUTAutomationFolder}/Template_Backup
@@ -482,10 +482,25 @@ update files copied to ContentQA - Functional
     Copy files    ${GenerateFolder}/${updateGenerateVersionFolder}/${updateGenerateTypeFolder}/${currentMonthYear_updateGenerate}/C/UPDATE/*    ${dataExtractionFolder}/C/Functional/Incremental/
     Copy files    ${GenerateFolder}/${updateGenerateVersionFolder}/${updateGenerateTypeFolder}/${currentMonthYear_updateGenerate}/PLSQL/UPDATE/*    ${dataExtractionFolder}/PLSQL/Functional/Incremental/
 
-non update files copied to Template
+production files copied to Template
+    Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/newmast    ${templateFolder}/Files/Prod/Main/Cobol/newmast
+    Copy file    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Master/newmast    ${templateFolder}/Files/Prod/Main/PLSQL/newmast
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/newmast    ${templateFolder}/Files/Prod/Main/C/newmast
+    Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/zipseq    ${templateFolder}/Files/Prod/Main/Cobol/zipseq
+    Copy file    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Master/zipseq    ${templateFolder}/Files/Prod/Main/PLSQL/zipseq
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/zipseq    ${templateFolder}/Files/Prod/Main/C/zipseq
+    Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/prodseq    ${templateFolder}/Files/Prod/Main/Cobol/prodseq
+    Copy file    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Master/prodseq    ${templateFolder}/Files/Prod/Main/PLSQL/prodseq
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/prodseq    ${templateFolder}/Files/Prod/Main/C/prodseq
+    Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/excprule    ${templateFolder}/Files/Prod/Main/Cobol/excprule
+    Copy file    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Master/excprule    ${templateFolder}/Files/Prod/Main/PLSQL/excprule
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/excprule    ${templateFolder}/Files/Prod/Main/C/excprule
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/feedata    ${templateFolder}/Files/Prod/Main/C/feedata
+    Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/cntyseq    ${templateFolder}/Files/Prod/Main/Cobol/cntyseq
+    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/cntyseq    ${templateFolder}/Files/Prod/Main/C/cntyseq
     Copy files    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Control/*    ${templateFolder}/Files/Prod/Control/PLSQL/
     Copy files    ${dataExtractionFolder}/C/${orderPartialPath}/Control/*    ${templateFolder}/Files/Prod/Control/C/
-    Copy files    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Control/*    ${templateFolder}/Files/Prod/Control/Cobol/
+    Copy files    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Control/*    ${templateFolder}/Files/Prod/Control/Cobol/    
 
 update files copied to Template
     Run Keyword And Ignore Error    Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Incremental/taxupdt*    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/C/taxupdt_xxx
@@ -504,8 +519,11 @@ update files copied to Template
     Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/feedata    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/C/feedata
     Copy file    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Master/cntyseq    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/Cobol/cntyseq
     Copy file    ${dataExtractionFolder}/C/${orderPartialPath}/Master/cntyseq    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/C/cntyseq
+    Copy files    ${dataExtractionFolder}/PLSQL/${orderPartialPath}/Control/*    ${templateFolder}/Files/Update/Control/PLSQL/
+    Copy files    ${dataExtractionFolder}/C/${orderPartialPath}/Control/*    ${templateFolder}/Files/Update/Control/C/
+    Copy files    ${dataExtractionFolder}/Cobol/${orderPartialPath}/Control/*    ${templateFolder}/Files/Update/Control/Cobol/
 
-update files copied to the systems
+incremental files copied to the systems
     Run Keyword And Ignore Error    Copy file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/ud001    ${PLSQLInfo}/
     Run Keyword And Ignore Error    Copy file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/ud002    ${PLSQLInfo}/
     Run Keyword And Ignore Error    Copy file    ${templateFolder}/Files/Update/Main/${updateTypePartialPath}/PLSQL/ud003    ${PLSQLInfo}/
