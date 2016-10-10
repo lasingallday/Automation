@@ -1,1 +1,0 @@
-CobolVersion = "Cobol_420"

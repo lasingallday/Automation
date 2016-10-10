@@ -1,0 +1,540 @@
+<root>
+	<Supplemental>00</Supplemental>
+	<Month>06</Month>
+	<Year>2016</Year>
+	<Installer>\\corp.sovos.local\sovos\WIL\Departments\Production\ReleaseCode\C_Suite_Install_2.0</Installer>
+	<Version>661</Version>
+	<Systems>
+		<System Name="C">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>newmast</File>
+								<File>zipseq</File>
+								<File>prodseq</File>
+								<File>cntyseq</File>
+								<File>excprule</File>
+								<File>feedata</File>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+								<File>canprovs</File>
+								<File>feedescs</File>
+								<File>feeexten</File>
+								<File>nexdesc</File>
+								<File>proddesc</File>
+								<File>prodext</File>
+								<File>stepreas</File>
+								<File>stepstcd</File>
+								<File>stepstcn</File>
+								<File>stepstrc</File>
+								<File>stepstre</File>
+								<File>taxbkt</File>
+								<File>taxbyitm</File>
+								<File>taxcuspd</File>
+								<File>taxdivpd</File>
+								<File>taxdlvr</File>
+								<File>taxdscpd</File>
+								<File>taxexc34</File>
+								<File>taxexczp</File>
+								<File>taxexmax</File>
+								<File>taxfees</File>
+								<File>taxfrtpd</File>
+								<File>taxholdy</File>
+								<File>taxholdy2</File>
+								<File>taxjurcd</File>
+								<File>taxjurpd</File>
+								<File>taxprizp</File>
+								<File>taxrfnds</File>
+								<File>taxrnd</File>
+								<File>taxrntpd</File>
+								<File>taxsrcpd</File>
+								<File>taxstapd</File>
+								<File>taxstuez</File>
+								<File>taxvalzp</File>
+								<File>texasexc</File>
+								<File>txbackex</File>
+								<File>txlocadm</File>
+								<File>txnexadm</File>
+								<File>txnobkst</File>
+								<File>txrndexc</File>
+								<File>txspdpd</File>
+								<File>txupdtno</File>
+								<File>zipstapd</File>
+								<File>zipvalzp</File>
+								<File>zpexs34</File>
+								<File>zpexseq</File>
+								<File>zpupdtno</File>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="PLSQL">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>newmast</File>
+								<File>prodseq</File>
+								<File>excprule</File>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+								<File>nexdesc</File>
+								<File>PILoad.dat</File>
+								<File>proddesc</File>
+								<File>stepcnty.dat</File>
+								<File>stepreas</File>
+								<File>stepstcd</File>
+								<File>stepstcn</File>
+								<File>stepstrc</File>
+								<File>stepstre</File>
+								<File>taxbkt</File>
+								<File>taxbyitm</File>
+								<File>taxcuspd</File>
+								<File>taxdivpd</File>
+								<File>taxdscpd</File>
+								<File>taxexczp</File>
+								<File>taxfrtpd</File>
+								<File>taxholdy</File>
+								<File>taxholdy2</File>
+								<File>taxjurcd</File>
+								<File>taxjurpd</File>
+								<File>taxmxtax.dat</File>
+								<File>taxprizp</File>
+								<File>taxrnd</File>
+								<File>taxrntpd</File>
+								<File>taxsrcpd</File>
+								<File>taxstapd</File>
+								<File>taxvalzp</File>
+								<File>texasexc</File>
+								<File>txcanada.dat</File>
+								<File>txlocadm</File>
+								<File>txnexadm</File>
+								<File>txrndexc</File>
+								<File>txspdpd</File>							
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="COBOL">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="CICS-CopyBooks">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>excprule</File>
+								<File>newmast</File>
+								<File>zipseq</File>
+								<File>cntyseq</File>
+								<File>prodseq</File>					
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+								<File>caltrtpd</File>
+								<File>prdistpd</File>
+								<File>stepreas</File>
+								<File>stepstcd</File>
+								<File>stepstcn</File>
+								<File>stepstrc</File>
+								<File>stepstre</File>
+								<File>taxbkt</File>
+								<File>taxbyitm</File>
+								<File>taxcuspd</File>
+								<File>taxexczp</File>
+								<File>taxfrtpd</File>
+								<File>taxholdy</File>
+								<File>taxholdy2</File>
+								<File>taxjurpd</File>
+								<File>taxjurpr</File>	
+								<File>taxmappd</File>
+								<File>taxprizp</File>
+								<File>taxrnd</File>
+								<File>taxrntpd</File>
+								<File>taxsrcpd</File>
+								<File>taxstapd</File>
+								<File>texasexc</File>
+								<File>txrndexc</File>
+								<File>txspdpd</File>
+								<File>zipstapd</File>
+								<File>zpexseq</File>					
+							</Files>
+						</Config>
+						<Config Name="CICS-CopyBooks">
+							<Files>
+								<File>TAXBKTTB</File>
+								<File>TAXCUSTB</File>
+								<File>TAXEXCTB</File>
+								<File>TAXFRTBL</File>
+								<File>TAXHOLTB</File>
+								<File>taxholtb2</File>
+								<File>TAXITMTB</File>
+								<File>TAXJURTB</File>
+								<File>TAXRNDTB</File>
+								<File>TAXRNTBL</File>
+								<File>TAXRNXTB</File>
+								<File>TAXSTTBL</File>
+								<File>TAXZPPTB</File>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="RPG">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>newmast</File>
+								<File>zipseq</File>
+								<File>prodseq</File>
+								<File>cntyseq</File>								
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+								<File>caltrtpd</File>								
+								<File>gacntypd</File>
+								<File>prdistpd</File>
+								<File>stepstcd</File>
+								<File>taxfrcpd</File>
+								<File>taxfrtpd</File>
+								<File>taxholpd</File>
+								<File>taxholpd2</File>
+								<File>taxjurpd</File>
+								<File>taxmappd</File>
+								<File>taxrntpd</File>
+								<File>taxsrcpd.rpg</File>
+								<File>taxstapd.rpg</File>
+								<File>taxzippd</File>
+								<File>texasexc</File>
+								<File>txspdpd</File>
+								<File>zipstapd</File>
+								<File>zpexseq</File>						
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="Verazip">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>cntyseq</File>
+								<File>VERAZIP.txt</File>
+								<File>zipseq</File>
+								<File>zpupdtno</File>
+								<File>zpexs34</File>
+								<File>zpexseq</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="WorldTax">
+			<Types>
+				<Type Name="Incremental">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>wtctiru_131</File>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+								<File>wtctiru_131.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="MainFiles">
+							<Files>
+								<File>wtccdsc_deu</File>
+								<File>wtccdsc_eng</File>
+								<File>wtccdsc_fra</File>
+								<File>wtccdsc_spa</File>
+								<File>wtcountry</File>
+								<File>wtctcm</File>
+								<File>wtctsr</File>
+							</Files>
+						</Config>
+						<Config Name="ControlFiles">
+							<Files>
+								<File>wtcccf</File>
+								<File>wtcode</File>
+								<File>wtcompl</File>
+								<File>wtcomps</File>
+								<File>wtcurc</File>
+								<File>wtdltr</File>
+								<File>wtemplrn</File>
+								<File>wtiomsg</File>
+								<File>wtjury</File>
+								<File>wtmonth</File>
+								<File>wtmotr</File>
+								<File>wtnotc</File>
+								<File>wtrpvr</File>
+								<File>wtupdtno</File>
+							</Files>
+						</Config>
+						<Config Name="Documents">
+							<Files>
+								<File>wtctsir.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="TMD">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>TMDFL</File>
+								<File>DtChg655.txt</File>
+								<File>SmChg655.txt</File>
+								<File>TMD.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="TMD2">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>SmChg660.txt</File>
+								<File>TMD2.txt</File>
+								<File>TMD2_1.160_TAXWARE</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="TaxManager">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>install.exe</File>
+								<File>TAXMGR.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="Veratax">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>VERATAX.TXT</File>
+								<File>VTAX.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="Veratax_Shane">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>verataxPLUS.0916.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="Group1">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>cntyseq</File>
+								<File>newmast</File>
+								<File>TAXWARE_DISTRICT_LIST.csv</File>
+								<File>TAXWARE_ZIP_GEO_MAP.csv</File>
+								<File>TJC_TO_ADDRESS_QUERY.csv</File>
+								<File>TJCS_WITH_ADDRESSES.csv</File>
+								<File>zipseq</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="iseries">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="STEPFE_Content">
+							<Files>
+								<File>cntyseq</File>
+								<File>stepreas</File>
+								<File>stepstcd</File>
+								<File>stepstcn</File>
+								<File>stepstrc</File>
+								<File>stepstre</File>
+							</Files>
+						</Config>
+						<Config Name="Root">
+							<Files>
+								<File>ADPDATA</File>
+								<File>AVPZIP</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+		<System Name="Extractor">
+			<Types>
+				<Type Name="Full">
+					<Configs>
+						<Config Name="Root">
+							<Files>
+								<File>azcitymt</File>
+								<File>azcitymt.txt</File>
+								<File>extsplix</File>
+								<File>extsplix.txt</File>
+								<File>nyclthpc</File>
+								<File>nyclthpc.txt</File>
+								<File>taxstapd</File>
+								<File>TAXSTAPD.txt</File>
+								<File>texasexc</File>
+								<File>TEXASEXC.txt</File>
+							</Files>
+						</Config>
+					</Configs>
+				</Type>
+			</Types>
+		</System>
+	</Systems>
+</root>
